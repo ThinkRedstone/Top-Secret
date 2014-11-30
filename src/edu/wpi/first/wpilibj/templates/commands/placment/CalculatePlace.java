@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.templates.commands.CommandBase;
  *
  * @author ThinkRedstone
  */
-public class calculatePlace extends CommandBase {
+public class CalculatePlace extends CommandBase {
     
-    public calculatePlace() {
+    public CalculatePlace() {
         requires(placment);
     }
 
