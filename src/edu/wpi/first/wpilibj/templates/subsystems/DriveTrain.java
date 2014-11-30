@@ -16,21 +16,20 @@ import edu.wpi.first.wpilibj.templates.commands.drive.TwoJoystickDrive;
 public class DriveTrain extends Subsystem implements In, Out {
 
     private Gearbox left, right;
-    private Encoder encoder;
+    private Encoder encoderP, EncoderS;
     private double wheelDiameter;
 
-    public DriveTrain(Gearbox left, Gearbox right, Encoder encoder, double wheelDiameter) {
+    public DriveTrain(Gearbox left, Gearbox right, Encoder encoderP, Encoder EncoderS, double wheelDiameter) {
         this.left = left;
         this.right = right;
-        this.encoder = encoder;
+        this.encoderP = encoderP;
+        this.EncoderS = EncoderS;
         this.wheelDiameter = wheelDiameter;
-        encoder.start();
     }
 
-    public DriveTrain(int frontLeftPort, int backLeftPort, int frontRightPort, int backRightPort, int encoderPort1, int encoderPort2, double wheelDiameter) {
-        this(new Gearbox(frontLeftPort, backLeftPort), new Gearbox(frontRightPort, backRightPort), new Encoder(encoderPort1, encoderPort2), wheelDiameter);
+    public DriveTrain(int frontLeftPort, int backLeftPort, int frontRightPort, int backRightPort, int encoderPPort1, int encoderPPort2, int encoderSPort1, int encoderSPort2, double wheelDiameter) {
+        this(new Gearbox(frontLeftPort, backLeftPort), new Gearbox(frontRightPort, backRightPort), new Encoder(encoderPPort1, encoderSPort2), new Encoder(encoderSPort1, encoderSPort2), wheelDiameter);
     }
-
 
     public void twoJoystickDrive(double leftSpeed, double rightSpeed) {
         left.setSpeed(leftSpeed);
@@ -52,7 +51,7 @@ public class DriveTrain extends Subsystem implements In, Out {
     }
 
     public double get() {
-        return encoder.get() * (Math.PI * wheelDiameter);
+        return encoderP.get() * (Math.PI * wheelDiameter);
     }
 
     public void set(double speed) {
