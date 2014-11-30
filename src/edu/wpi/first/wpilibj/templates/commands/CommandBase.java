@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.subsystems.Door;
 import edu.wpi.first.wpilibj.templates.subsystems.Elevator;
 import edu.wpi.first.wpilibj.templates.subsystems.PID;
+import edu.wpi.first.wpilibj.templates.subsystems.PlacmentSystem;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -20,11 +21,12 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems    
-//    TODO create vars
+//    TODO create vars for placment and DriveTrain
     public static final DriveTrain driveTrain = new DriveTrain(RobotMap.FRONT_LEFT_TALON, RobotMap.BACK_LEFT_TALON, RobotMap.FRONT_RIGHT_TALON, RobotMap.BACK_RIGHT_TALON, RobotMap.DRIVE_ENCODER_1, RobotMap.DRIVE_ENCODER_2, 1, 2, RobotMap.WHEEL_DIAMETER);
     public static final Door door = new Door(RobotMap.DOOR_RELAY_PORT, RobotMap.DOOR_TOP_DI_PORT, RobotMap.DOOR_BOTTOM_DI_PORT);
     public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_LEFT_WHEEL_PORT, RobotMap.ELEVATOR_RIGHT_WHEEL_PORT);
     public static final PID drivePID = new PID(RobotMap.AUTONOMOUS_DRIVE_DESTINATION, RobotMap.DRIVER_KP, RobotMap.DRIVER_KI, RobotMap.DRIVER_KD, RobotMap.DRIVER_DT, driveTrain, driveTrain);
+    public static final PlacmentSystem placment = new PlacmentSystem(1);
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
