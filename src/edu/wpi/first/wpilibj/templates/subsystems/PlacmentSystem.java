@@ -17,7 +17,7 @@ public class PlacmentSystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     private Gyro gyro;
-    private int x, y;
+    private double x, y;
 
     public PlacmentSystem(Gyro gyro) {
         this.gyro = gyro;
@@ -32,19 +32,19 @@ public class PlacmentSystem extends Subsystem {
         return gyro.getAngle();
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x += x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y += y;
     }
 

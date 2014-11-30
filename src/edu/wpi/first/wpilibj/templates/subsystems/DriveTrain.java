@@ -51,19 +51,23 @@ public class DriveTrain extends Subsystem implements In, Out {
     }
 
     public double get() {
-        return (getPort() + getStarboard()) / 2;
+        return (getPortside() + getStarboard()) / 2;
     }
 
     public void set(double speed) {
         straight(speed);
     }
 
-    public double getPort() {
-        return encoderP.get() * (Math.PI * wheelDiameter);
+    public double getPortside() {
+        double tmp = encoderP.get();
+        encoderP.reset();
+        return tmp * (Math.PI * wheelDiameter);
     }
 
     public double getStarboard() {
-        return EncoderS.get() * (Math.PI * wheelDiameter);
+        double tmp = EncoderS.get();
+        EncoderS.reset();
+        return tmp * (Math.PI * wheelDiameter);
     }
 
 }
