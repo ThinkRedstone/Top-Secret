@@ -42,5 +42,6 @@ public class RobotMap {
     public static final double DRIVER_KD = 0;
     public static final long DRIVER_DT = 0;
     public static final int ENCODER_TICKS_IN_CYCLE = 0;
+    public static final long GYTO_MISTAKE_PER_MILISECOND = 0;
 
 }

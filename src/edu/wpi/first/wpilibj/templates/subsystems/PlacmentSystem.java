@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.placment.CalculatePlace;
 
 /**
@@ -19,10 +20,11 @@ public class PlacmentSystem extends Subsystem {
     // here. Call these from Commands.
     private Gyro gyro;
     private double x, y;
+    private long startingTime;
 
     public PlacmentSystem(Gyro gyro) {
         this.gyro = gyro;
-        gyro.reset();
+        reset();
     }
 
     public PlacmentSystem(int gyroPort) {
@@ -30,7 +32,7 @@ public class PlacmentSystem extends Subsystem {
     }
 
     public double getAngle() {
-        return gyro.getAngle();
+        return gyro.getAngle() - (System.currentTimeMillis() - startingTime) * RobotMap.GYTO_MISTAKE_PER_MILISECOND;
     }
 
     public double getX() {
@@ -53,6 +55,7 @@ public class PlacmentSystem extends Subsystem {
         x = 0;
         y = 0;
         gyro.reset();
+        startingTime = System.currentTimeMillis();
     }
 
     public void initDefaultCommand() {
