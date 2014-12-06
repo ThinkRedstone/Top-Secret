@@ -19,6 +19,12 @@ public class PlacmentPIDCalculator extends Subsystem implements In {
     private double destX, destY;
     private double total;
 
+    public PlacmentPIDCalculator(double destX, double destY) {
+        this.destX = destX;
+        this.destY = destY;
+    }
+    
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
