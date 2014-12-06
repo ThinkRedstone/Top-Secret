@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.commands.PIDdrive;
 
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 
 /**
@@ -23,6 +24,7 @@ public class DriveTo extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        drivePID.initializeDestenation(placment.getDistanceToCord(RobotMap.AUTONOMOUS_DRIVE_DESTINATION_X, RobotMap.AUTONOMOUS_DRIVE_DESTINATION_Y));
     }
 
     // Called repeatedly when this Command is scheduled to run

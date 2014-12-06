@@ -27,7 +27,7 @@ public abstract class CommandBase extends Command {
     public static final Door door = new Door(RobotMap.DOOR_RELAY_PORT, RobotMap.DOOR_TOP_DI_PORT, RobotMap.DOOR_BOTTOM_DI_PORT);
     public static final Elevator elevator = new Elevator(RobotMap.ELEVATOR_LEFT_WHEEL_PORT, RobotMap.ELEVATOR_RIGHT_WHEEL_PORT);
     public static final PlacmentSystem placment = new PlacmentSystem(1);
-    public static final PID drivePID = new PID(placment.getDistanceToCord(RobotMap.AUTONOMOUS_DRIVE_DESTINATION_X, RobotMap.AUTONOMOUS_DRIVE_DESTINATION_Y), RobotMap.DRIVER_KP, RobotMap.DRIVER_KI, RobotMap.DRIVER_KD, RobotMap.DRIVER_DT, new PlacmentPIDCalculator(RobotMap.AUTONOMOUS_DRIVE_DESTINATION_X, RobotMap.AUTONOMOUS_DRIVE_DESTINATION_Y), driveTrain);
+    public static final PID drivePID = new PID(RobotMap.DRIVER_KP, RobotMap.DRIVER_KI, RobotMap.DRIVER_KD, RobotMap.DRIVER_DT, new PlacmentPIDCalculator(RobotMap.AUTONOMOUS_DRIVE_DESTINATION_X, RobotMap.AUTONOMOUS_DRIVE_DESTINATION_Y), driveTrain);
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
