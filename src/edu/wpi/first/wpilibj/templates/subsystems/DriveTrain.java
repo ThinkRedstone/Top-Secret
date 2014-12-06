@@ -7,6 +7,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 import driveComponents.Gearbox;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.templates.RobotMap;
 import edu.wpi.first.wpilibj.templates.commands.drive.TwoJoystickDrive;
 
 /**
@@ -16,14 +17,15 @@ import edu.wpi.first.wpilibj.templates.commands.drive.TwoJoystickDrive;
 public class DriveTrain extends Subsystem implements In, Out {
 
     private Gearbox left, right;
-    private Encoder encoderP, EncoderS;
+    private Encoder encoderP, encoderS;
     private double wheelDiameter;
+    private double distanceTraveled;
 
     public DriveTrain(Gearbox left, Gearbox right, Encoder encoderP, Encoder EncoderS, double wheelDiameter) {
         this.left = left;
         this.right = right;
         this.encoderP = encoderP;
-        this.EncoderS = EncoderS;
+        this.encoderS = EncoderS;
         this.wheelDiameter = wheelDiameter;
     }
 
@@ -51,23 +53,22 @@ public class DriveTrain extends Subsystem implements In, Out {
     }
 
     public double get() {
-        return (getPortside() + getStarboard()) / 2;
+        double tmp = convertEncoderTicks(encoderS.get() + encoderP.get() / 2) - distanceTraveled;
+        distanceTraveled += tmp;
+        return tmp;
     }
 
     public void set(double speed) {
         straight(speed);
     }
 
-    public double getPortside() {
-        double tmp = encoderP.get();
+    public double convertEncoderTicks(double encoderTicks) {
+        return (encoderTicks / RobotMap.ENCODER_TICKS_IN_CYCLE) * (wheelDiameter * Math.PI);
+    }
+
+    public void reset() {
         encoderP.reset();
-        return tmp * (Math.PI * wheelDiameter);
+        encoderS.reset();
+        distanceTraveled = 0;
     }
-
-    public double getStarboard() {
-        double tmp = EncoderS.get();
-        EncoderS.reset();
-        return tmp * (Math.PI * wheelDiameter);
-    }
-
 }

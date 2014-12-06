@@ -20,12 +20,13 @@ public class CalculatePlace extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         placment.reset();
+        driveTrain.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        placment.setX(driveTrain.get()* Math.cos(placment.getAngle()));
-        placment.setY(driveTrain.get()*Math.sin(placment.getAngle()));
+        placment.addToX(driveTrain.get()* Math.cos(placment.getAngle()));
+        placment.addToY(driveTrain.get()*Math.sin(placment.getAngle()));
     }
 
     // Make this return true when this Command no longer needs to run execute()

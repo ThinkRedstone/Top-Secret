@@ -37,7 +37,7 @@ public class PlacmentSystem extends Subsystem {
         return x;
     }
 
-    public void setX(double x) {
+    public void addToX(double x) {
         this.x += x;
     }
 
@@ -45,7 +45,7 @@ public class PlacmentSystem extends Subsystem {
         return y;
     }
 
-    public void setY(double y) {
+    public void addToY(double y) {
         this.y += y;
     }
 
