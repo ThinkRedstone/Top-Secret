@@ -5,6 +5,7 @@
  */
 package edu.wpi.first.wpilibj.templates.subsystems;
 
+import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.RobotMap;
@@ -56,6 +57,10 @@ public class PlacmentSystem extends Subsystem {
         y = 0;
         gyro.reset();
         startingTime = System.currentTimeMillis();
+    }
+
+    public double getDistanceToCord(double x, double y) {
+        return Math.sqrt(MathUtils.pow((y - getY()), 2) + MathUtils.pow(x - getX(), 2));
     }
 
     public void initDefaultCommand() {
