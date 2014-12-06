@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
  */
 public class PID extends Subsystem {
 
-    private final double KP, KI, KD, dest;
+    private final double KP, KI, KD;
+    private double dest;
     private double error, prevError, p, i, d;
     private final long dt;
     private final In in;
@@ -30,6 +31,20 @@ public class PID extends Subsystem {
         this.dt = dt;
         this.in = in;
         this.out = out;
+    }
+
+    public PID(double KP, double KI, double KD, long dt, In in, Out out) {
+        this.KP = KP;
+        this.KI = KI;
+        this.KD = KD;
+        this.dt = dt;
+        this.in = in;
+        this.out = out;
+    }
+    
+    public void initializeDestenation(double dest){
+        this.dest = dest;
+        this.error = dest;
     }
 
     public void doPID() {
